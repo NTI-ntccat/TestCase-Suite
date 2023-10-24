@@ -30,54 +30,49 @@ Partial Class LandingPage
         ' 
         ' btnManageEmployees
         ' 
-        btnManageEmployees.Location = New Point(116, 52)
-        btnManageEmployees.Margin = New Padding(3, 2, 3, 2)
+        btnManageEmployees.Location = New Point(132, 69)
         btnManageEmployees.Name = "btnManageEmployees"
-        btnManageEmployees.Size = New Size(132, 22)
+        btnManageEmployees.Size = New Size(151, 29)
         btnManageEmployees.TabIndex = 0
         btnManageEmployees.Text = "ManageEmployees"
         btnManageEmployees.UseVisualStyleBackColor = True
         ' 
         ' btnaddProj
         ' 
-        btnaddProj.Location = New Point(116, 78)
-        btnaddProj.Margin = New Padding(3, 2, 3, 2)
+        btnaddProj.Location = New Point(132, 104)
         btnaddProj.Name = "btnaddProj"
-        btnaddProj.Size = New Size(132, 22)
+        btnaddProj.Size = New Size(151, 29)
         btnaddProj.TabIndex = 1
         btnaddProj.Text = "Add Project"
         btnaddProj.UseVisualStyleBackColor = True
         ' 
         ' btnSearch
         ' 
-        btnSearch.Location = New Point(116, 104)
-        btnSearch.Margin = New Padding(3, 2, 3, 2)
+        btnSearch.Location = New Point(132, 139)
         btnSearch.Name = "btnSearch"
-        btnSearch.Size = New Size(132, 22)
+        btnSearch.Size = New Size(151, 29)
         btnSearch.TabIndex = 2
         btnSearch.Text = "Search"
         btnSearch.UseVisualStyleBackColor = True
         ' 
         ' btnCreateTestCase
         ' 
-        btnCreateTestCase.Location = New Point(116, 130)
-        btnCreateTestCase.Margin = New Padding(3, 2, 3, 2)
+        btnCreateTestCase.Location = New Point(132, 174)
         btnCreateTestCase.Name = "btnCreateTestCase"
-        btnCreateTestCase.Size = New Size(132, 22)
+        btnCreateTestCase.Size = New Size(151, 29)
         btnCreateTestCase.TabIndex = 3
         btnCreateTestCase.Text = "Create Test Case"
         btnCreateTestCase.UseVisualStyleBackColor = True
         ' 
         ' LandingPage
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(374, 224)
+        ClientSize = New Size(428, 299)
         Controls.Add(btnCreateTestCase)
         Controls.Add(btnSearch)
         Controls.Add(btnaddProj)
         Controls.Add(btnManageEmployees)
-        Margin = New Padding(3, 2, 3, 2)
         Name = "LandingPage"
         Text = "LandingPage"
         ResumeLayout(False)

@@ -55,36 +55,81 @@ Public Class EmployeeDAO
     End Sub
 
     Function selectAllEmployee(emp As Employee)
-        strSQL = "SELECT id, firstname, lastname, username, email, isactive 
-                    FROM employee"
-        mySQLCMD.CommandText = strSQL
-        Dim adapter As New MySqlDataAdapter(strSQL, Conn)
-        Dim dataSet As New DataSet()
-
         Try
+            'strSQL = "SELECT id, firstname, lastname, username, email, isactive 
+            '           FROM employee e"
+            strSQL = "SELECT e.id, e.firstname, e.lastname, e.username, e.email, e.isactive " &
+            "FROM employee e " &
+            "JOIN employeeprojectmapping epm " &
+            "ON e.id = epm.empid " &
+            "WHERE epm.projid = @value1;"
+
+            mySQLCMD.CommandText = strSQL
+            mySQLCMD.Parameters.AddWithValue("@value1", 1)
             ConnectDB()
+            Dim adapter As New MySqlDataAdapter(strSQL, Conn)
+            Dim dataSet As New DataSet()
+            adapter.SelectCommand = mySQLCMD
+
+
             ' Fill the DataSet with data from the database
-            adapter.Fill(dataSet, "employee")
+            adapter.Fill(dataSet)
 
             Return dataSet
         Catch ex As Exception
             MessageBox.Show("Failed to Select Employee details: " + ex.Message)
-            Return dataSet
+            Return Nothing
         Finally
             CloseDB()
+            mySQLCMD.Parameters.Clear()
         End Try
 
 
     End Function
 
-    Sub updateEmployee(emp As Employee, colName As String, newValue As String)
+    Function selectAllEmployeeByProject(emp As Employee, project As Project)
         Try
-            strSQL = "Update employee set " & colName & " = @value WHERE id = @id"
             ConnectDB()
+            strSQL = "SELECT e.id, e.firstname, e.lastname, e.username, e.email, e.isactive " &
+                          "FROM employee e " &
+                          "JOIN employeeprojectmapping epm " &
+                          "ON e.id = epm.empid " &
+                          "WHERE epm.projid = @value;"
             mySQLCMD.CommandText = strSQL
-            mySQLCMD.Parameters.AddWithValue("@columnName", colName)
-            mySQLCMD.Parameters.AddWithValue("@value", newValue)
-            mySQLCMD.Parameters.AddWithValue("@id", emp.id)
+            mySQLCMD.Parameters.AddWithValue("@value", project.id)
+
+            Dim adapter As New MySqlDataAdapter(strSQL, Conn)
+            Dim dataSet As New DataSet()
+            adapter.SelectCommand = mySQLCMD
+
+            adapter.Fill(dataSet, "emp")
+
+            Return dataSet
+        Catch ex As Exception
+            MessageBox.Show("Failed to Select Employee details: " + ex.Message)
+            Return Nothing
+        Finally
+            CloseDB()
+            mySQLCMD.Parameters.Clear()
+        End Try
+
+
+    End Function
+
+    Sub updateEmployee(emp As Employee)
+        Try
+            strSQL = "UPDATE employee
+                SET firstname = @value1, lastname = @value2, username = @value3, email = @value4, isactive=@value5
+                WHERE id = @value6"
+            mySQLCMD.Parameters.AddWithValue("@value1", emp.firstName)
+            mySQLCMD.Parameters.AddWithValue("@value2", emp.lastName)
+            mySQLCMD.Parameters.AddWithValue("@value3", emp.userName)
+            mySQLCMD.Parameters.AddWithValue("@value4", emp.eMail)
+            mySQLCMD.Parameters.AddWithValue("@value5", emp.isActive)
+            mySQLCMD.Parameters.AddWithValue("@value6", Integer.Parse(emp.id))
+            mySQLCMD.CommandText = strSQL
+
+            ConnectDB()
             mySQLCMD.ExecuteNonQuery()
             MessageBox.Show("Update successful")
         Catch ex As Exception
@@ -136,5 +181,29 @@ Public Class EmployeeDAO
 
 
     End Function
+
+    'updates password and salt
+    Sub updatePassword(emp As Employee)
+        strSQL = "UPDATE employee
+            SET password = @value1,
+            salt = @value2
+            where id = @value3;"
+
+        mySQLCMD.Parameters.AddWithValue("@value1", emp.password)
+        mySQLCMD.Parameters.AddWithValue("@value2", emp.salt)
+        mySQLCMD.Parameters.AddWithValue("@value3", emp.id)
+        mySQLCMD.CommandText = strSQL
+        Try
+            ConnectDB()
+            mySQLCMD.ExecuteNonQuery()
+            MessageBox.Show("Password Updated")
+        Catch ex As Exception
+            MessageBox.Show("Password update failed. " & ex.Message)
+        Finally
+            mySQLCMD.Parameters.Clear()
+            CloseDB()
+        End Try
+
+    End Sub
 
 End Class
