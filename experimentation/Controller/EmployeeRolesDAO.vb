@@ -30,4 +30,63 @@ Public Class EmployeeRolesDAO
         End Try
 
     End Function
+
+    Function getSpecificEmployeeRole(emp As Employee, empRole As EmployeeRole)
+        strSQL = "SELECT r.id,r.accesslevelname, r.accesslevel
+                FROM employeerolesmapping er
+                JOIN employeeroles r 
+                ON er.accesslevelid = r.id
+                WHERE er.empid = @value"
+        mySQLCMD.Parameters.AddWithValue("@value", emp.id)
+        mySQLCMD.CommandText = strSQL
+
+        Try
+            ConnectDB()
+            Using reader As MySqlDataReader = mySQLCMD.ExecuteReader
+                If reader.Read Then
+                    empRole.id = reader.GetInt16(0)
+                    empRole.accesslevelname = reader.GetString(1)
+                    empRole.accesslevel = reader.GetInt16(2)
+
+                    Return empRole
+                Else
+                    MessageBox.Show("Employee has no role")
+                    Return empRole
+                End If
+            End Using
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+            Return empRole
+        Finally
+            mySQLCMD.Parameters.Clear()
+            CloseDB()
+        End Try
+    End Function
+
+    Function getSpecificEmployeeRoleViaAccessLevel(empRole As EmployeeRole)
+        strSQL = "SELECT * FROM employeeroles WHERE accesslevel = @value"
+        mySQLCMD.Parameters.AddWithValue("@value", empRole.accesslevel)
+        mySQLCMD.CommandText = strSQL
+
+        Try
+            ConnectDB()
+            Using reader As MySqlDataReader = mySQLCMD.ExecuteReader
+                If reader.Read Then
+                    empRole.id = reader.GetInt16(0)
+                    empRole.accesslevelname = reader.GetString(1)
+                    empRole.accesslevel = reader.GetInt16(2)
+                    Return empRole
+                Else
+                    MessageBox.Show("Nothing was fetched")
+                    Return empRole
+                End If
+            End Using
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+            Return empRole
+        Finally
+            mySQLCMD.Parameters.Clear()
+            CloseDB()
+        End Try
+    End Function
 End Class

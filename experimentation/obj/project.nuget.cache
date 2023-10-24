@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "nO+Qwmra9wqs2ftl5QcLcowqAJeBc13CM0OZblx2fAL8odILA68Ufh3LsR9Yx0/lLIQnAvE8pjDqJrAcPycmIg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\CalvinLingat\\Pictures\\git\\TestCase-Suite\\experimentation\\experimentation.vbproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\CalvinLingat\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
