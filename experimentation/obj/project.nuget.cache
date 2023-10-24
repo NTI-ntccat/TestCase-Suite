@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "heSGWvFPjQnERXJd8fnBb1HHD0lto+ThUV4yDeUPvgCdkZxxGebQvbW2iBr3lSk9A8DoA4xGgDH9GQ+PkAhviw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\CalvinLingat\\Source\\Repos\\NTI-ntccat\\TestCase-Suite\\experimentation\\experimentation.vbproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\CalvinLingat\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

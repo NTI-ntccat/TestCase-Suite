@@ -10,7 +10,7 @@ Public Class ProjectSettings
     End Sub
 
     Private Sub btnAddEmployees_Click(sender As Object, e As EventArgs) Handles btnAddEmployees.Click
-        Form1.ShowDialog()
+        ManageEmployees.ShowDialog()
         Me.Close()
     End Sub
 
