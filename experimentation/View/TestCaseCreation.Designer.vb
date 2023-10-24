@@ -37,7 +37,6 @@ Partial Class TestCaseCreation
         txtbxProject = New TextBox()
         lblProject = New Label()
         btnImport = New Button()
-        Button1 = New Button()
         CType(dgvTestCase, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -169,21 +168,11 @@ Partial Class TestCaseCreation
         btnImport.Text = "Import"
         btnImport.UseVisualStyleBackColor = True
         ' 
-        ' Button1
-        ' 
-        Button1.Location = New Point(457, 261)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(94, 29)
-        Button1.TabIndex = 15
-        Button1.Text = "Import"
-        Button1.UseVisualStyleBackColor = True
-        ' 
         ' TestCaseCreation
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1008, 551)
-        Controls.Add(Button1)
         Controls.Add(btnImport)
         Controls.Add(txtbxProject)
         Controls.Add(lblProject)
@@ -221,5 +210,4 @@ Partial Class TestCaseCreation
     Friend WithEvents txtbxProject As TextBox
     Friend WithEvents lblProject As Label
     Friend WithEvents btnImport As Button
-    Friend WithEvents Button1 As Button
 End Class
